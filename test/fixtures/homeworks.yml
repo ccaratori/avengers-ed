@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: homeworks
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  question   :text
+#  due_at     :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  question: MyText
+  due_at: 2016-02-13 19:02:07
+
+two:
+  title: MyString
+  question: MyText
+  due_at: 2016-02-13 19:02:07
