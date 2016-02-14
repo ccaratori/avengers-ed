@@ -40,6 +40,7 @@
           <tr>
             <th>Homework</th>
             <th>Due date</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@
             <tr>
               <td><%= homework.title %></td>
               <td><%= homework.due_at %></td>
+              <td><%= link_to "view", teacher_homework_path(homework) %></td>
             </tr>
           <% end %>
         </tbody>

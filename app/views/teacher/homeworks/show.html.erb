@@ -12,33 +12,35 @@
       </div><!-- .panel-body -->
     </div><!-- .panel .panel-default -->
 
+    <% unless @homework.expired? %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Assign homework
+        </div><!-- .panel-heading -->
+        <% if @unassigned_students.empty? %>
+          <div class="panel-body">
+            <h4 class="empty-state">No students left to assign this homework.</h4>
+          </div>
+        <% else %>
+          <table class="table table-striped">
+            <tbody>
+              <% @unassigned_students.each do |student| %>
+                <tr>
+                  <td><%= student.username %></td>
+                  <td>
+                    <%= simple_form_for Assignment.new, url: teacher_homework_assignments_path(@homework) do |f| %>
+                      <%= f.input :user_id, as: :hidden, input_html: { value: student.id } %>
+                      <%= f.button :submit, "assign", class: "link" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div><!-- .panel .panel-default -->
+    <% end %>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Assign homework
-      </div><!-- .panel-heading -->
-      <% if @unassigned_students.empty? %>
-        <div class="panel-body">
-          <h4 class="empty-state">No students left to assign this homework.</h4>
-        </div>
-      <% else %>
-        <table class="table table-striped">
-          <tbody>
-            <% @unassigned_students.each do |student| %>
-              <tr>
-                <td><%= student.username %></td>
-                <td>
-                  <%= simple_form_for Assignment.new, url: teacher_homework_assignments_path(@homework) do |f| %>
-                    <%= f.input :user_id, as: :hidden, input_html: { value: student.id } %>
-                    <%= f.button :submit, "assign", class: "link" %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
-    </div><!-- .panel .panel-default -->
   </div><!-- .col-xs-3 -->
 
   <div class="col-xs-9">

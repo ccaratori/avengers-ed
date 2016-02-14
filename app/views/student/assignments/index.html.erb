@@ -55,7 +55,14 @@
           <% @past_assignments.each do |assignment| %>
             <tr>
               <td><%= assignment.homework.title %></td>
-              <td><%= assignment.homework.due_at %></td>
+              <td>
+                <%= assignment.homework.due_at %>
+                <% if assignment.answers_count.zero? %>
+                  <span class="label label-danger">Sorry, you missed this one</span>
+                <% else %>
+                  <span class="label label-success">Be cool, you submited this one</span>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
