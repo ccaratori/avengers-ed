@@ -8,7 +8,7 @@ function attachHomeworkDatepicker() {
     pickTime: false,
     startDate: current_date,
     pickerPosition: "bottom-left",
-    format: 'mm-dd-yyyy'
+    format: 'yyyy-mm-dd'
   });
 }
 
