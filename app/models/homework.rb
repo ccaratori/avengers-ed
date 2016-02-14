@@ -3,9 +3,9 @@
 # Table name: homeworks
 #
 #  id         :integer          not null, primary key
-#  title      :string
-#  question   :text
-#  due_at     :datetime
+#  title      :string           not null
+#  question   :text             not null
+#  due_at     :datetime         not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
