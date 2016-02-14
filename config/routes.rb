@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   namespace :teacher do
-    resources :homeworks
+    resources :homeworks do
+      resources :assignments, only: [:create]
+    end
   end
 
   root 'teacher/homeworks#index'

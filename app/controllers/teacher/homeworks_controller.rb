@@ -11,6 +11,11 @@ class Teacher::HomeworksController < ApplicationController
     @homework = Homework.new
   end
 
+  def show
+    @homework = current_teacher.homeworks.find(params[:id])
+    @unassigned_students = User.student.where.not(id: @homework.assignments.pluck(:user_id))
+  end
+
   def create
     @homework = current_teacher.homeworks.new(homework_params)
  
@@ -18,6 +23,16 @@ class Teacher::HomeworksController < ApplicationController
       redirect_to teacher_homeworks_path
     else
       render :new
+    end
+  end
+
+  def update
+    @homework = current_teacher.homeworks.find(params[:id])
+ 
+    if @homework.update_attributes(homework_params)
+      redirect_to teacher_homework_path(@homework)
+    else
+      render :show
     end
   end
 

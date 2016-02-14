@@ -1,43 +1,24 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <%= @homework.title %>
+<div class="row">
+  <div class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Assign homework: <strong><%= @homework.title %></strong>
+      </div>
+      <table class="table table-striped">
+        <tbody>
+          <% @unassigned_students.each do |student| %>
+            <tr>
+              <td><%= student.username %></td>
+              <td>
+                <%= simple_form_for Assignment.new, url: teacher_homework_assignments_path(@homework) do |f| %>
+                  <%= f.input :user_id, as: :hidden, input_html: { value: student.id } %>
+                  <%= f.button :submit, "assign", class: "link" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-  <% if @ %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Homework</th>
-          <th>Due date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @current_homeworks.each do |homework| %>
-          <tr>
-            <td><%= homework.title %></td>
-            <td><%= homework.due_at %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-
-  <% if @past_homeworks %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Homework</th>
-          <th>Due date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @past_homeworks.each do |homework| %>
-          <tr>
-            <td><%= homework.title %></td>
-            <td><%= homework.due_at %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>  
 </div>
