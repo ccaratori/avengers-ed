@@ -12,5 +12,5 @@
 class Assignment < ActiveRecord::Base
   belongs_to :student, class_name: "User", foreign_key: "user_id"
   belongs_to :homework
-  has_many :answers
+  has_many :answers, -> { order(created_at: :desc) }
 end

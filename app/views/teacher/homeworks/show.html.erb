@@ -15,7 +15,7 @@
     <% unless @homework.expired? %>
       <div class="panel panel-default">
         <div class="panel-heading">
-          Assign homework
+          Which student should submit this homework?
         </div><!-- .panel-heading -->
         <% if @unassigned_students.empty? %>
           <div class="panel-body">
@@ -69,7 +69,7 @@
                   <% if assignment.answers.empty? %>
                     <strong>No submissions for this homework yet</strong>
                   <% else %>
-                    <%= assignment.answers.last.text %>
+                    <%= assignment.answers.first.text %>
                   <% end %>
                 </td>
                 <td><%= link_to "all answers", teacher_homework_assignment_path(assignment.homework, assignment) %></td>

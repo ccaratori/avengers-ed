@@ -23,7 +23,7 @@
         <% @current_assignments.each do |assignment| %>
           <tr>
             <td><%= assignment.homework.title %></td>
-            <td><%= assignment.homework.due_at %></td>
+            <td><%= assignment.homework.due_at.strftime("%m-%d-%Y") %></td>
             <td>
               <%= link_to "submit answer", new_student_assignment_answer_path(assignment) %>
             </td>
@@ -60,7 +60,7 @@
             <tr>
               <td><%= assignment.homework.title %></td>
               <td>
-                <%= assignment.homework.due_at %>
+                <%= assignment.homework.due_at.strftime("%m-%d-%Y") %>
               </td>
               <td>
                 <% if assignment.answers_count.zero? %>
