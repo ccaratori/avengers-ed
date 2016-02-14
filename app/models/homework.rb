@@ -11,4 +11,5 @@
 #
 
 class Homework < ActiveRecord::Base
+  validates :title, :question, :due_at, presence: true
 end
