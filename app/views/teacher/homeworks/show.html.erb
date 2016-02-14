@@ -1,9 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    Current homeworks <span class="pull-right"><%= link_to "create new homework", new_teacher_homework_path %></span>
+    <%= @homework.title %>
   </div>
 
-  <% if @current_homeworks %>
+  <% if @ %>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -22,7 +22,7 @@
     </table>
   <% end %>
 
-  <% unless @past_homeworks.empty? %>
+  <% if @past_homeworks %>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -39,30 +39,5 @@
         <% end %>
       </tbody>
     </table>
-  <% end %>
+  <% end %>  
 </div>
-
-<% unless @past_homeworks.empty? %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      Past homeworks
-    </div>
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Homework</th>
-            <th>Due date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @past_homeworks.each do |homework| %>
-            <tr>
-              <td><%= homework.title %></td>
-              <td><%= homework.due_at %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-  </div>
-<% end %>

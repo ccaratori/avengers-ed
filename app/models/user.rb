@@ -11,6 +11,7 @@
 
 class User < ActiveRecord::Base
   has_many :homeworks
+  has_many :assignments
 
   enum role: [:teacher, :student]
 

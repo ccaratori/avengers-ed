@@ -13,6 +13,7 @@
 
 class Homework < ActiveRecord::Base
   belongs_to :teacher, class_name: "User", foreign_key: "user_id"
+  has_many :assignments
 
   validates :title, :question, :due_at, presence: true
 end
