@@ -1,9 +1,22 @@
+<%= render partial: "shared/flash_messages", flash: flash %>
+
 <div class="row">
-  <div class="col-xs-4">
+  <div class="col-xs-3">
+
+    <%= link_to "Back", teacher_homeworks_path, class: "btn btn-default btn-block margin-bottom-20" %>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3><%= @homework.title %></h3>
+        <h5>Question: <%= @homework.question %></h5>
+      </div><!-- .panel-body -->
+    </div><!-- .panel .panel-default -->
+
+
     <div class="panel panel-default">
       <div class="panel-heading">
-        Assign homework: <strong><%= @homework.title %></strong>
-      </div>
+        Assign homework
+      </div><!-- .panel-heading -->
       <table class="table table-striped">
         <tbody>
           <% @unassigned_students.each do |student| %>
@@ -19,6 +32,38 @@
           <% end %>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
+    </div><!-- .panel .panel-default -->
+  </div><!-- .col-xs-3 -->
+
+  <div class="col-xs-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Already assigned students
+      </div><!-- .panel-heading -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Latest Answer</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @assignments.each do |assignment| %>
+            <tr>
+              <td><%= assignment.student.username %></td>
+              <td>
+                <% if assignment.answers.empty? %>
+                  <strong>No submissions for this homework yet</strong>
+                <% else %>
+                  <%= assignment.answers.last.text %>
+                <% end %>
+              </td>
+              <td><%= link_to "all answers", teacher_homework_assignment_path(assignment.homework, assignment) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- .panel .panel-default -->
+  </div><!-- .col-xs-9 -->
+</div><!-- .row -->

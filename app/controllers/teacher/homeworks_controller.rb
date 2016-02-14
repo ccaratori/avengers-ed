@@ -13,6 +13,7 @@ class Teacher::HomeworksController < ApplicationController
 
   def show
     @homework = current_teacher.homeworks.find(params[:id])
+    @assignments = @homework.assignments.includes(:student, :answers)
     @unassigned_students = User.student.where.not(id: @homework.assignments.pluck(:user_id))
   end
 

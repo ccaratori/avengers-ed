@@ -1,8 +1,16 @@
 <div class="row">
-  <div class="col-xs-4">
-    <h2><%= @assignment.homework.title %></h2>
-    <h4>Question: <strong><%= @assignment.homework.question %></strong></h4>
-  </div>
+  <div class="col-xs-3">
+
+    <%= link_to "Back", student_assignments_path, class: "btn btn-default btn-block margin-bottom-20" %>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3><%= @assignment.homework.title %></h3>
+        <h5>Question: <%= @assignment.homework.question %></h5>
+      </div><!-- .panel-body -->
+    </div><!-- .panel .panel-default -->
+
+  </div><!-- .col-xs-3 -->
 
   <div class="col-xs-6">
     <%= simple_form_for @answer, url: student_assignment_answers_path do |f| %>

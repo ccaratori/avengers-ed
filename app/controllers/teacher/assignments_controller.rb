@@ -2,6 +2,10 @@ class Teacher::AssignmentsController < ApplicationController
 
   before_action :authenticate_teacher!
 
+  def show
+    @assignment = current_teacher.homeworks.find(params[:homework_id]).assignments.find(params[:id])
+  end
+
   def create
     @homework = current_teacher.homeworks.find(params[:homework_id])
  

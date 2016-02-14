@@ -13,7 +13,6 @@ class Student::AnswersController < ApplicationController
   end
 
   def create
-    byebug
     @assignment = current_student.assignments.find(params[:assignment_id])
     @answer = @assignment.answers.new(answer_params)
 

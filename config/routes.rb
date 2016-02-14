@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :teacher do
     resources :homeworks do
-      resources :assignments, only: [:create]
+      resources :assignments, only: [:create, :show]
     end
   end
 

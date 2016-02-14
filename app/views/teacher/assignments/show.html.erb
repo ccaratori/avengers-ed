@@ -1,0 +1,41 @@
+<%= render partial: "shared/flash_messages", flash: flash %>
+
+<div class="row">
+  <div class="col-xs-3">
+
+    <%= link_to "Back", teacher_homework_path(@assignment.homework), class: "btn btn-default btn-block margin-bottom-20" %>
+
+    <div class="panel panel-default">
+      <div class="panel-body">  
+        <h3><%= @assignment.homework.title %></h3>
+        <h5>Question: <%= @assignment.homework.question %></h5>
+        <h5>Student: <%= @assignment.student.username %></h5>
+      </div><!-- .panel-body -->
+    </div><!-- .panel .panel-default -->
+
+  </div><!-- .col-xs-3 -->
+
+  <div class="col-xs-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        All answers
+      </div><!-- .panel-heading -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Answer ID</th>
+            <th>Answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @assignment.answers.each do |answer| %>
+            <tr>
+              <td><%= answer.id %></td>
+              <td><%= answer.text %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- .panel .panel-default -->
+  </div><!-- .col-xs-9 -->
+</div><!-- .row -->

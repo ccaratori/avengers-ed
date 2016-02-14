@@ -11,6 +11,7 @@
         <tr>
           <th>Homework</th>
           <th>Due date</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -21,9 +22,9 @@
             <td>
               <%= link_to "submit answer", new_student_assignment_answer_path(assignment) %>
               <% if assignment.answers_count.zero? %>
-                <span class="label label-success">Yay! Already submited</span>
-              <% else %>
                 <span class="label label-warning">Please answer me</span>
+              <% else %>
+                <span class="label label-success">Yay! Already submited</span>
               <% end %>
             </td>
           </tr>
