@@ -12,6 +12,7 @@ class Teacher::AssignmentsController < ApplicationController
     @assignment = @homework.assignments.new(assignment_params)
 
     if @assignment.save
+      flash[:notice] = "Student successfully assigned to homework"
       redirect_to teacher_homework_path(@homework)
     else
       render :new
