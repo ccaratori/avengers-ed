@@ -3,7 +3,7 @@ class Teacher::HomeworksController < ApplicationController
   before_action :authenticate_teacher!
 
   def index
-    @current_homeworks = Homework.all
+    @current_homeworks = current_teacher.homeworks
   end
 
   def new
@@ -11,7 +11,7 @@ class Teacher::HomeworksController < ApplicationController
   end
 
   def create
-    @homework = Homework.new(homework_params)
+    @homework = current_teacher.homeworks.new(homework_params)
  
     if @homework.save
       redirect_to teacher_homeworks_path

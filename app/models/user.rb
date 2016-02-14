@@ -10,6 +10,8 @@
 #
 
 class User < ActiveRecord::Base
+  has_many :homeworks
+
   enum role: [:teacher, :student]
 
   validates :username, presence: true, uniqueness: true
