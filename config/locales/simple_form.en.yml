@@ -11,12 +11,11 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     # Examples
-    # labels:
+    labels:
     #   defaults:
     #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
+      homework:
+        due_at: 'Due date'
     #     edit:
     #       email: 'E-mail.'
     # hints:

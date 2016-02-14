@@ -1,17 +1,11 @@
 class Teacher::HomeworksController < ApplicationController
 
   def index
-    @homeworks = Homework.all
+    @current_homeworks = Homework.all
   end
 
   def new
     @homework = Homework.new
-  end
-
-  def edit
-  end
-
-  def show
   end
 
   def create
@@ -22,9 +16,6 @@ class Teacher::HomeworksController < ApplicationController
     else
       render :new
     end
-  end
-
-  def update
   end
 
   private
