@@ -12,6 +12,7 @@
 class User < ActiveRecord::Base
   has_many :homeworks
   has_many :assignments
+  has_many :assigned_homeworks, through: :assignments, source: "homework"
 
   enum role: [:teacher, :student]
 

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :student do
+    resources :homeworks, only: [:index] 
+  end
+
   root 'teacher/homeworks#index'
 
   get 'login', to: 'sessions#new', as: 'login'

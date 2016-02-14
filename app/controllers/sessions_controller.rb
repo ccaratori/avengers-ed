@@ -8,7 +8,12 @@ class SessionsController < ApplicationController
     @user = User.where(username: params[:username]).first
     if @user
       session[:user_id] = @user.id
-      redirect_to root_url
+      if @user.teacher?
+        redirect_to teacher_homeworks_path
+      else
+        redirect_to student_homeworks_path
+      end
+
     else
       session[:user_id] = nil
       flash.now[:alert] = "Ops! Username not found."
