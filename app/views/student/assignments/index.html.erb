@@ -7,7 +7,7 @@
 
   <% if @current_assignments.empty? %>
     <div class="panel-body">
-      <h4 class="empty-state">Ops, you don't have any assigned homeworks yet. Go ask your teacher for some work :)</h4>
+      <h4 class="empty-state">Ops, you don't have any assigned homeworks for now. Go ask your teacher for some work :)</h4>
     </div>
   <% else %>
     <table class="table table-striped">
@@ -15,6 +15,7 @@
         <tr>
           <th>Homework</th>
           <th>Due date</th>
+          <th></th>
           <th></th>
         </tr>
       </thead>
@@ -25,10 +26,12 @@
             <td><%= assignment.homework.due_at %></td>
             <td>
               <%= link_to "submit answer", new_student_assignment_answer_path(assignment) %>
+            </td>
+            <td>
               <% if assignment.answers_count.zero? %>
-                <span class="label label-warning">Please answer me</span>
+                <span class="label label-warning pull-right">Please answer me</span>
               <% else %>
-                <span class="label label-success">Yay! Already submited</span>
+                <span class="label label-success pull-right">Yay! Already submited</span>
               <% end %>
             </td>
           </tr>
@@ -49,6 +52,7 @@
           <tr>
             <th>Homework</th>
             <th>Due date</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -57,10 +61,12 @@
               <td><%= assignment.homework.title %></td>
               <td>
                 <%= assignment.homework.due_at %>
+              </td>
+              <td>
                 <% if assignment.answers_count.zero? %>
-                  <span class="label label-danger">Sorry, you missed this one</span>
+                  <span class="label label-danger pull-right">Sorry, you missed this one</span>
                 <% else %>
-                  <span class="label label-success">Be cool, you submited this one</span>
+                  <span class="label label-success pull-right">Be cool, you submited this one</span>
                 <% end %>
               </td>
             </tr>

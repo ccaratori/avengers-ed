@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     @user = User.where(username: params[:username]).first
     if @user
       session[:user_id] = @user.id
+      flash[:notice] = "Welcome to the Avengers homework initiative"
       redirect_to root_path
     else
       session[:user_id] = nil

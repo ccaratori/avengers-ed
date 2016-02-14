@@ -21,19 +21,10 @@ class Teacher::HomeworksController < ApplicationController
     @homework = current_teacher.homeworks.new(homework_params)
  
     if @homework.save
+      flash[:notice] = "Homework created. Go ahead and assign it to students now"
       redirect_to teacher_homeworks_path
     else
       render :new
-    end
-  end
-
-  def update
-    @homework = current_teacher.homeworks.find(params[:id])
- 
-    if @homework.update_attributes(homework_params)
-      redirect_to teacher_homework_path(@homework)
-    else
-      render :show
     end
   end
 
