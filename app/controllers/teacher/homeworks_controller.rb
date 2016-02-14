@@ -1,5 +1,7 @@
 class Teacher::HomeworksController < ApplicationController
 
+  before_action :authenticate_teacher!
+
   def index
     @current_homeworks = Homework.all
   end

@@ -1,0 +1,30 @@
+<% title "Sign in" %>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-3">
+
+      <div class="panel panel-default slideUp">
+        <div class="panel-body">
+
+          <%= render partial: "shared/flash_messages", flash: flash %>
+
+          <%= form_tag session_url do %>
+
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+              <%= text_field_tag :username, '', class: 'form-control', placeholder: 'Username' %>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-success">Sign In</button>
+              </span>
+            </div>
+
+          <% end %>
+
+        </div><!-- .panel-body -->
+      </div><!-- .panel -->
+
+    </div><!-- .col -->
+  </div><!-- .row -->
+</div><!--container-->
