@@ -10,5 +10,7 @@
 #
 
 class Answer < ActiveRecord::Base
-  belongs_to :assignment
+  belongs_to :assignment, counter_cache: true
+
+  validates :text, presence: true
 end

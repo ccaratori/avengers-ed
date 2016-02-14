@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-4">
+    <h2><%= @assignment.homework.title %></h2>
+    <h4>Question: <strong><%= @assignment.homework.question %></strong></h4>
+  </div>
+
+  <div class="col-xs-6">
+    <%= simple_form_for @answer, url: student_assignment_answers_path do |f| %>
+      <%= f.input :text, input_html: { rows: 10 } %>
+      <%= f.button :submit, "Submit Answer", class: "btn-success pull-right" %>
+    <% end %>
+  </div>
+</div>
+

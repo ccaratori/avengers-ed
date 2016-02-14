@@ -27,4 +27,13 @@ class ApplicationController < ActionController::Base
     @current_user ||= current_teacher || current_student
   end
   helper_method :current_user
+
+  def root_path
+    if current_user.teacher?
+      teacher_homeworks_path
+    else
+      student_assignments_path
+    end
+  end
+  helper_method :root_path
 end

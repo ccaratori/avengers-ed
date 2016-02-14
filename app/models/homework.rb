@@ -16,4 +16,8 @@ class Homework < ActiveRecord::Base
   has_many :assignments
 
   validates :title, :question, :due_at, presence: true
+
+  def expired?
+    false
+  end
 end
