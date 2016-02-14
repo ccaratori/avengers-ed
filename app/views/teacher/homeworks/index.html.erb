@@ -3,7 +3,11 @@
     Current homeworks <span class="pull-right"><%= link_to "create new homework", new_teacher_homework_path %></span>
   </div>
 
-  <% if @current_homeworks %>
+  <% if @current_homeworks.empty? %>
+    <div class="panel-body">
+      <h4 class="empty-state">Uow, you don't have any homeworks to assign to your students. Why don't you <%= link_to "give it a try?", new_teacher_homework_path %></h4>
+    </div>
+  <% else %>
     <table class="table table-striped">
       <thead>
         <tr>

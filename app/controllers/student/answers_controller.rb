@@ -7,8 +7,8 @@ class Student::AnswersController < ApplicationController
     @answer = Answer.new
 
     if @assignment.homework.expired?
-      flash.now[:alert] = "Ops! You missed this assignment's deadline"
-      redirect student_assignments_path
+      flash[:alert] = "Ops! You missed this assignment's deadline, sorry :("
+      redirect_to student_assignments_path
     end    
   end
 
@@ -17,10 +17,10 @@ class Student::AnswersController < ApplicationController
     @answer = @assignment.answers.new(answer_params)
 
     if @assignment.homework.expired?
-      flash.now[:alert] = "Ops! You missed this assignment's deadline"
+      flash[:alert] = "Ops! You missed this assignment's deadline, sorry :("
       redirect_to student_assignments_path
     elsif @answer.save
-      flash.now[:notice] = "Good job, answer submited!"
+      flash[:notice] = "Good job, answer submited!"
       redirect_to student_assignments_path
     else
       render :new

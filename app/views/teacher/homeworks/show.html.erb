@@ -17,21 +17,27 @@
       <div class="panel-heading">
         Assign homework
       </div><!-- .panel-heading -->
-      <table class="table table-striped">
-        <tbody>
-          <% @unassigned_students.each do |student| %>
-            <tr>
-              <td><%= student.username %></td>
-              <td>
-                <%= simple_form_for Assignment.new, url: teacher_homework_assignments_path(@homework) do |f| %>
-                  <%= f.input :user_id, as: :hidden, input_html: { value: student.id } %>
-                  <%= f.button :submit, "assign", class: "link" %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <% if @unassigned_students.empty? %>
+        <div class="panel-body">
+          <h4 class="empty-state">No students left to assign this homework.</h4>
+        </div>
+      <% else %>
+        <table class="table table-striped">
+          <tbody>
+            <% @unassigned_students.each do |student| %>
+              <tr>
+                <td><%= student.username %></td>
+                <td>
+                  <%= simple_form_for Assignment.new, url: teacher_homework_assignments_path(@homework) do |f| %>
+                    <%= f.input :user_id, as: :hidden, input_html: { value: student.id } %>
+                    <%= f.button :submit, "assign", class: "link" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div><!-- .panel .panel-default -->
   </div><!-- .col-xs-3 -->
 
@@ -40,30 +46,36 @@
       <div class="panel-heading">
         Already assigned students
       </div><!-- .panel-heading -->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Latest Answer</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @assignments.each do |assignment| %>
+      <% if @assignments.empty? %>
+        <div class="panel-body">
+          <h4 class="empty-state">You haven't assigned this homework to a student yet! Just go ahead and select a few on the left.</h4>
+        </div>
+      <% else %>
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= assignment.student.username %></td>
-              <td>
-                <% if assignment.answers.empty? %>
-                  <strong>No submissions for this homework yet</strong>
-                <% else %>
-                  <%= assignment.answers.last.text %>
-                <% end %>
-              </td>
-              <td><%= link_to "all answers", teacher_homework_assignment_path(assignment.homework, assignment) %></td>
+              <th>Student Name</th>
+              <th>Latest Answer</th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @assignments.each do |assignment| %>
+              <tr>
+                <td><%= assignment.student.username %></td>
+                <td>
+                  <% if assignment.answers.empty? %>
+                    <strong>No submissions for this homework yet</strong>
+                  <% else %>
+                    <%= assignment.answers.last.text %>
+                  <% end %>
+                </td>
+                <td><%= link_to "all answers", teacher_homework_assignment_path(assignment.homework, assignment) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div><!-- .panel .panel-default -->
   </div><!-- .col-xs-9 -->
 </div><!-- .row -->

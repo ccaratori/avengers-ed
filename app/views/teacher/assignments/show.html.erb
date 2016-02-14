@@ -20,22 +20,28 @@
       <div class="panel-heading">
         All answers
       </div><!-- .panel-heading -->
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Answer ID</th>
-            <th>Answer</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @assignment.answers.each do |answer| %>
+      <% if @assignment.answers.empty? %>
+        <div class="panel-body">
+          <h4 class="empty-state">Ops! <strong><%= @assignment.student.username %></strong> has not submited this homework yet :(</h4>
+        </div>
+      <% else %>
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= answer.id %></td>
-              <td><%= answer.text %></td>
+              <th>Answer ID</th>
+              <th>Answer</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @assignment.answers.each do |answer| %>
+              <tr>
+                <td><%= answer.id %></td>
+                <td><%= answer.text %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div><!-- .panel .panel-default -->
   </div><!-- .col-xs-9 -->
 </div><!-- .row -->

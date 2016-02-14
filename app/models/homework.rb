@@ -18,6 +18,6 @@ class Homework < ActiveRecord::Base
   validates :title, :question, :due_at, presence: true
 
   def expired?
-    false
+    due_at.end_of_day < Time.current
   end
 end
