@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   namespace :student do
-    resources :homeworks, only: [:index] 
+    resources :assignments, only: [:index] 
   end
 
   root 'teacher/homeworks#index'

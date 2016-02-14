@@ -1,4 +1,4 @@
-class Student::HomeworksController < ApplicationController
+class Student::AssignmentsController < ApplicationController
 
   before_action :authenticate_student!
 
