@@ -3,8 +3,9 @@ class Teacher::HomeworksController < ApplicationController
   before_action :authenticate_teacher!
 
   def index
-    @current_homeworks = current_teacher.homeworks.where("due_at >= ?", Date.current.end_of_day)
-    @past_homeworks = current_teacher.homeworks.where("due_at < ?", Date.current.end_of_day)
+    byebug
+    @current_homeworks = current_teacher.homeworks.where("due_at::date >= ?", Date.current)
+    @past_homeworks = current_teacher.homeworks.where("due_at::date < ?", Date.current)
   end
 
   def new
