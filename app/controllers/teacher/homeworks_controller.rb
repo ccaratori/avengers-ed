@@ -22,7 +22,7 @@ class Teacher::HomeworksController < ApplicationController
  
     if @homework.save
       flash[:notice] = "Homework created. Go ahead and assign it to students now"
-      redirect_to teacher_homeworks_path
+      redirect_to teacher_homework_path(@homework)
     else
       render :new
     end
